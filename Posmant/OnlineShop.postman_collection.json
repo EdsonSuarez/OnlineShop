@@ -39,13 +39,13 @@
 					"response": []
 				},
 				{
-					"name": "Register Role Admin",
+					"name": "Register Role Proveedor",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"proveedor\",\r\n    \"description\" : \"Rol de proveedor\"\r\n}",
+							"raw": "{\r\n    \"name\": \"supplier\",\r\n    \"description\" : \"Rol de proveedor\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -69,7 +69,7 @@
 					"response": []
 				},
 				{
-					"name": "Register Role Proveedor",
+					"name": "Register Role Admin",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -866,7 +866,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Atun\",\r\n    \"categoryId\": \"60c90ddc39c194110014af14\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Atun\",\r\n    \"categoryId\": \"60c90ddc39c194110014af14\",\r\n    \"supplierId\": \"60c8d284b04a321fa04f758f\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -906,7 +906,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"zapato\",\r\n    \"categoryId\" : \"60c90bae39c194110014af13\"\r\n}",
+							"raw": "{\r\n    \"name\": \"zapato\",\r\n    \"categoryId\" : \"60c90bae39c194110014af13\",\r\n    \"supplierId\": \"60c8d284b04a321fa04f758f\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -978,7 +978,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\": \"60ce2c7d84168906e00d8af2\",\r\n    \"name\": \"atun2\",\r\n    \"categoryId\": \"60c90ddc39c194110014af14\"\r\n}",
+							"raw": "{\r\n    \"_id\": \"60ce2c7d84168906e00d8af2\",\r\n    \"name\": \"atun2\",\r\n    \"categoryId\": \"60c90ddc39c194110014af14\",\r\n    \"supplierId\": \"60c8d284b04a321fa04f758f\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1018,7 +1018,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\": \"60ce2c7d84168906e00d8af2\",\r\n    \"name\": \"atun\",\r\n    \"categoryId\": \"60c90ddc39c194110014af14\"\r\n}",
+							"raw": "{\r\n    \"_id\": \"60ce2c7d84168906e00d8af2\",\r\n    \"name\": \"atun\",\r\n    \"categoryId\": \"60c90ddc39c194110014af14\",\r\n    \"supplierId\": \"60c8d284b04a321fa04f758f\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1063,7 +1063,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"clientId\": \"60c8d562b04a321fa04f7591\",\r\n    \"employeeId\" : \"60c8d30db04a321fa04f7590\",\r\n    \"productId\": \"60ce2c7d84168906e00d8af2\",\r\n    \"cost\": \"1234\"\r\n\r\n}",
+							"raw": "{\r\n    \"clientId\": \"60c8d562b04a321fa04f7591\",\r\n    \"employeeId\" : \"60c8d30db04a321fa04f7590\",\r\n    \"productId\": \"60ce2c7d84168906e00d8af2\",\r\n    \"cost\": \"123.2324\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
