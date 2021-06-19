@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 
 
 const saleSchema = new mongoose.Schema({
-  client:  { type: mongoose.Schema.ObjectId, ref: "user" },
-  employee:  { type: mongoose.Schema.ObjectId, ref: "user" },
-  product: { type: mongoose.Schema.ObjectId, ref: "product" },
-  cost: Double,
+  clientId:  { type: mongoose.Schema.ObjectId, ref: "user" },
+  employeeId:  { type: mongoose.Schema.ObjectId, ref: "user" },
+  productId: { type: mongoose.Schema.ObjectId, ref: "product" },
+  cost: Number,
   active: Boolean,
   date: {type: Date, default: Date.now}
 });

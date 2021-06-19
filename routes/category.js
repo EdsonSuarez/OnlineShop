@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
 
 const Category = require("../models/category");
 const Auth = require("../middleware/auth");
@@ -23,8 +24,8 @@ router.post("/registerCategory", Auth, UserAuth, AdminAuth, async (req, res) => 
   return res.status(200).send({ result });
 });
 
-router.get("/listCategory", Auth, UserAuth, async (req, res) => {
-    const category = await Category.find();
+router.get("/listCategories/:name?", Auth, UserAuth, async (req, res) => {
+    const category = await Category.find({ name: new RegExp(req.params["name"], "i") });
     if (!category) return res.status(401).send("No categories");
     return res.status(200).send({ category });
   });
@@ -33,16 +34,14 @@ router.put("/updateCategory", Auth, UserAuth, AdminAuth, async (req, res) => {
     if (
         !req.body._id ||
         !req.body.name ||
-        !req.body.description ||
-        !req.body.active
-      )
+        !req.body.description
+        )
         return res.status(401).send("Process failed: Incomplete data");
     
       const validId = mongoose.Types.ObjectId.isValid(req.body._id);
       if (!validId) return res.status(401).send("Process failed: Invalid id");
     
       const category = await Category.findByIdAndUpdate(req.body._id, {
-        userId: req.user._id,
         name: req.body.name,
         active: req.body.active,
         description: req.body.description,
@@ -51,5 +50,27 @@ router.put("/updateCategory", Auth, UserAuth, AdminAuth, async (req, res) => {
       return res.status(200).send({ category });  
   });
 
-  module.exports = router;
-  
+router.put("/deleteCategory", Auth, UserAuth, AdminAuth, async (req, res) => {
+  if (
+      !req.body._id ||
+      !req.body.name ||
+      !req.body.description
+      )
+    return res.status(401).send("Process failed: Incomplete data");
+
+  const validId = mongoose.Types.ObjectId.isValid(req.body._id);
+  if (!validId) return res.status(401).send("Process failed: Invalid id");
+
+  const category = await Category.findByIdAndUpdate(req.body._id, {
+    userId: req.user._id,
+    name: req.body.name,
+    description: req.body.description,
+    active: false,
+    
+  });
+  if (!category)
+    return res.status(401).send("Process failed: category not found");
+  return res.status(200).send({ category });
+}); 
+
+module.exports = router;
