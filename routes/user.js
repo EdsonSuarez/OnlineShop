@@ -20,7 +20,7 @@ router.post("/registerUser", async (req, res) => {
   if (user) return res.status(401).send("Process failed: The user is already registered");
 
   const hash = await bcrypt.hash(req.body.password, 10);
-  const role = await Role.findOne({ name: "cliente" });
+  const role = await Role.findOne({ name: "client" });
   if (!role)
     return res.status(400).send("Process failed: No role was assigned");
 

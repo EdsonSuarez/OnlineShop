@@ -24,10 +24,43 @@ router.post("/registerRole", Auth, UserAuth, AdminAuth, async (req, res) => {
 });
 
 router.get("/listRole", Auth, UserAuth, AdminAuth, async (req, res) => {
-    const role = await Role.find();
-    if (!role) return res.status(401).send("No roles");
-    return res.status(200).send({ role });
+  const role = await Role.find();
+  if (!role) return res.status(401).send("No roles");
+  return res.status(200).send({ role });
+});
+
+router.put("/updateRole", Auth, UserAuth, AdminAuth, async (req, res) => {
+  if (!req.body._id || !req.body.name || !req.body.description)
+    return res.status(401).send("Process failed: Incomplete data");
+
+  const validId = mongoose.Types.ObjectId.isValid(req.body._id);
+  if (!validId) return res.status(401).send("Process failed: Invalid id");
+
+  const role = await Role.findByIdAndUpdate(req.body._id, {
+    name: req.body.name,
+    description: req.body.description,
+    active: true,
   });
-  
-  module.exports = router;
-  
+  if (!role)
+    return res.status(401).send("Process failed: role not found");
+  return res.status(200).send({ role });
+});
+
+router.put("/deleteRole", Auth, UserAuth, AdminAuth, async (req, res) => {
+  if (!req.body._id || !req.body.name || !req.body.description)
+    return res.status(401).send("Process failed: Incomplete data");
+
+  const validId = mongoose.Types.ObjectId.isValid(req.body._id);
+  if (!validId) return res.status(401).send("Process failed: Invalid id");
+
+  const role = await Role.findByIdAndUpdate(req.body._id, {
+    name: req.body.name,
+    description: req.body.description,
+    active: false,
+  });
+  if (!role)
+    return res.status(401).send("Process failed: role not found");
+  return res.status(200).send({ role });
+});
+
+module.exports = router;

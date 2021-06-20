@@ -10,6 +10,12 @@ const AdminAuth = require("../middleware/admin");
 router.post("/registerProduct", Auth, UserAuth, AdminAuth, async (req, res) => {
   if (!req.body.name || !req.body.categoryId || !req.body.supplierId)
     return res.status(401).send("Process failed: Incomplete data");
+
+  const valiCategoryId = mongoose.Types.ObjectId.isValid(req.body.categoryId);
+  const validSupplierId = mongoose.Types.ObjectId.isValid(req.body.supplierId);
+  if (!valiCategoryId || !validSupplierId)
+    return res.status(401).send("Process failed: Invalid id");
+
   const productExists = await Product.findOne({ name: req.body.name });
   if (productExists)
     return res.status(401).send("Process failed: product already exists");
@@ -25,7 +31,7 @@ router.post("/registerProduct", Auth, UserAuth, AdminAuth, async (req, res) => {
   return res.status(200).send({ result });
 });
 
-router.get("/listProducts/:name?", Auth, UserAuth, async (req, res) => {
+router.get("/listProducts/:name?", async (req, res) => {
   const product = await Product.find({
     name: new RegExp(req.params["name"], "i"),
   })

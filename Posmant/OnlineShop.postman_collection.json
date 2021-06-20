@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"cliente\",\r\n    \"description\" : \"Rol de cliente\"\r\n}",
+							"raw": "{\r\n    \"name\": \"client\",\r\n    \"description\" : \"Rol de cliente\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -105,7 +105,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"empleado\",\r\n    \"description\" : \"Rol de empleado\"\r\n}",
+							"raw": "{\r\n    \"name\": \"employee\",\r\n    \"description\" : \"Rol de empleado\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -740,7 +740,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGM4Yzk2ZDQwMzRlNzJlNzA1ZjY5N2MiLCJuYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGVJZCI6IjYwYzhjMzYyYTYzMmQ4MTBmY2I2OTM5YiIsImlhdCI6MTYyNDExODc1M30.k1H5rEYiiNlDvOb1o_cTnXSfFdeUQGrFcHYTvRdnqDU",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -748,7 +748,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/api/category/listCategory/",
+							"raw": "http://localhost:3001/api/category/listCategories/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -757,7 +757,7 @@
 							"path": [
 								"api",
 								"category",
-								"listCategory",
+								"listCategories",
 								""
 							]
 						}
@@ -937,7 +937,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGM4Yzk2ZDQwMzRlNzJlNzA1ZjY5N2MiLCJuYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGVJZCI6IjYwYzhjMzYyYTYzMmQ4MTBmY2I2OTM5YiIsImlhdCI6MTYyNDExODc1M30.k1H5rEYiiNlDvOb1o_cTnXSfFdeUQGrFcHYTvRdnqDU",
+									"value": "",
 									"type": "string"
 								}
 							]

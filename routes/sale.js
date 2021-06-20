@@ -7,7 +7,10 @@ const Auth = require("../middleware/auth");
 const UserAuth = require("../middleware/user");
 const AdminAuth = require("../middleware/admin");
 
-router.post("/registerSale", Auth, UserAuth, AdminAuth, async (req, res) => {
+const User = require("../models/user");
+const EmployeeAuth = require("../middleware/employee");
+
+router.post("/registerSale", Auth, UserAuth, EmployeeAuth, async (req, res) => {
   if (
     !req.body.clientId ||
     !req.body.employeeId ||
@@ -15,6 +18,12 @@ router.post("/registerSale", Auth, UserAuth, AdminAuth, async (req, res) => {
     !req.body.cost
   )
     return res.status(401).send("Process failed: Incomplete data");
+
+  const valiClientdId = mongoose.Types.ObjectId.isValid(req.body.clientId);
+  const validEmployeeId = mongoose.Types.ObjectId.isValid(req.body.employeeId);
+  const validProductId = mongoose.Types.ObjectId.isValid(req.body.productId);
+  if (!valiClientdId || !validEmployeeId || !validProductId)
+    return res.status(401).send("Process failed: Invalid id");
 
   const sale = new Sale({
     clientId: req.body.clientId,
@@ -29,7 +38,7 @@ router.post("/registerSale", Auth, UserAuth, AdminAuth, async (req, res) => {
   return res.status(200).send({ result });
 });
 
-router.get("/listSales/:name?", Auth, UserAuth, async (req, res) => {
+router.get("/listSales/:name?", Auth, UserAuth, AdminAuth, async (req, res) => {
   const sale = await Sale.find()
     .populate("clientId")
     .populate("employeeId")
@@ -57,7 +66,7 @@ router.put("/updateSale", Auth, UserAuth, AdminAuth, async (req, res) => {
     employeeId: req.body.employeeId,
     productId: req.body.productId,
     cost: req.body.cost,
-    active: req.body.active,
+    active: true,
   });
 
   if (!sale) return res.status(401).send("Process failed: sale not found");
